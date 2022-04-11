@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         *{
+            margin: 0;
+            padding: 0;
+        }
+        #parent{
+           display: flex;
+           font-size: x-large;
+           justify-content: space-evenly;
+           padding: 1%;
+           box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        }
+        #parent>div>a{
+            text-decoration: none;
+            color: teal;
+            font-weight: bold;
+        }
+        table{
+            margin: 30px auto;
+            border-collapse: collapse;
+        }
+        th,td{
+            font-size:18px;
+            border: 1.5px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th{
+            background-color: teal;
+            color: white;
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="parent">
+        <div> <a href="index.html">Home</a></div>
+        <div> <a href="contactlist.html">Contact list</a></div>
+        <div> <a href="favourite.html">Favourites</a></div>
+     </div>
+     <table>
+        <thead>
+            <tr>
+                <th>Contact name</th>
+                <th>Mobile no</th>
+                <th>Type</th>
+                
+            </tr>
+        </thead >
+       
+        <tbody id="thead">
+
+        </tbody>
+</body>
+<script>
+ var favourite = JSON.parse(localStorage.getItem('contactList')) || [];
+// var favourite = JSON.parse(localStorage.getItem('favourite'))
+    function displayData(myFamily,contactList){
+        console.log(favourite)
+        myFamily.forEach(contactList => {
+            
+            var row = document.createElement('tr');
+            var th1 = document.createElement('td');
+            th1.innerText = contactList.name
+
+            var th2 = document.createElement('td');
+            th2.innerText = contactList.number
+
+            var th3 = document.createElement('td');
+            th3.innerText = contactList.option
+           
+          
+           
+        //    localStorage.setItem('favourite',JSON.stringify(favourite))
+            row.append(th1,th2,th3);
+        document.querySelector('tbody').append(row)
+    //    window.location.reload()
+        });
+        
+       
+    }
+    
+    window.addEventListener('load',function(){
+        displayData(favourite)
+    })
+</script>
+</html>

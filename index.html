@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #parent{
+           display: flex;
+           font-size: x-large;
+           justify-content: space-evenly;
+           padding: 1%;
+           box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        }
+        #parent>div>a{
+            text-decoration: none;
+            color: teal;
+            font-weight: bold;
+        }
+        form{
+      width: 23%;
+      height: 250px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  margin: 3% auto;
+  padding: 2%;
+  }
+  input,select{
+      display:block ;
+      margin: 15px 0;
+      font-size: 18px;
+      padding: 2%;
+  }
+#submit{
+    width: 70%;
+    margin :auto;
+    background-color: black;
+    color: wheat;
+    border-radius: 17px;
+    
+}
+    </style>
+</head>
+<body>
+    <div id="parent">
+       <div> <a href="index.html">Home</a></div>
+       <div> <a href="contactlist.html">Contact list</a></div>
+       <div> <a href="favourite.html">Favourites</a></div>
+    </div>
+<div>
+   
+    <form id="form">
+        <h2>Enter your contact details</h2>
+      <input type="text" placeholder="Enter your name" id="name" >
+      <input type="number" placeholder="enter your number" id="number">
+      <select name="" id="select">
+          <option value="select type">Select Type</option>
+          <option value="family">Family</option>
+          <option value="friend">Friend</option>
+          <option value="others">Others</option>
+          <input type="submit" id="submit">
+      </select>
+    </form>
+</div>
+   
+</body>
+<script>
+    
+      var contactList = JSON.parse(localStorage.getItem("contactList")) || []
+    var add = document.querySelector('#form').addEventListener('submit',function(){
+        event.preventDefault()
+       var objFamily={
+           name : document.querySelector('#name').value,
+           number :document.querySelector('#number').value,
+           option : document.querySelector('#select').value,
+
+       }
+       contactList.push(objFamily)
+       localStorage.setItem("contactList",JSON.stringify(contactList))
+       alert('Added contact to your contact list')
+    })
+
+
+
+</script>
+</html>
